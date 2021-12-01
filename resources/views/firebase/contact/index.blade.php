@@ -10,7 +10,7 @@
                 <div class="card-">
                     <div class="card-header">
                         <h4>
-                            contact List
+                            contact List - Total : {{$total_Contacts}}
                             <a href="{{url('add-contact')}}" class="btn btn-sm btn-primary float-end">Add data </a>
                         </h4>
                     </div>

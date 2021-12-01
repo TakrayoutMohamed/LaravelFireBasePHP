@@ -16,8 +16,9 @@ class ContactController extends Controller
     // return all the records or users from database
     public function index()
     {
+        $total_Contacts = $this->database->getReference($this->tablename)->getSnapshot()->numChildren();
         $getContacts = $this->database->getReference($this->tablename)->getValue();
-        return view('firebase.contact.index',compact('getContacts'));
+        return view('firebase.contact.index',compact('getContacts','total_Contacts'));
     }
     // return the page create
     public function create()
@@ -57,7 +58,7 @@ class ContactController extends Controller
         else
         {
             return redirect('contacts')->with('status','The user with that id is not exist');
-    
+
         }
     }
     //update the data fields
@@ -82,7 +83,7 @@ class ContactController extends Controller
     //delete a record from database
     public function delete($id)
     {
-        $responseDelete=$this->database->getReference($this->tablename.'/'.$id)->remove();
+        $responseDelete =$this->database->getReference($this->tablename.'/'.$id)->remove();
         if($responseDelete)
         {
             return redirect('contacts')->with('status','the data deleted Successfully');
